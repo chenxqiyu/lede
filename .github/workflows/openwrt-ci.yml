@@ -57,7 +57,10 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        run: make defconfig
+        run: |
+          rm -f ./.config*
+          wget https://raw.githubusercontent.com/chenxqiyu/lede/master/.config
+          make defconfig
 
       - name: Make download
         run: |
