@@ -8,14 +8,13 @@
 name: OpenWrt-R3P加速缓存编译1
 
 on:
-  #schedule:
-   # - cron: 0 20 * * *
-  #release:
-  #  types: [published]
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH 连接至 Actions'
+        required: true
+        default: 'false'
     
 permissions:
   contents: read
@@ -38,7 +37,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: 13ac208389090be161627cdddeb17f338adda330
           fetch-depth: 0
           
       - name: cache
