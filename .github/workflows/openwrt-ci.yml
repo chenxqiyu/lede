@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: 13ac208389090be161627cdddeb17f338adda330
-#           fetch-depth: 0
+          fetch-depth: 0
           
       - name: cache
         uses: klever1988/cachewrtbuild@main
