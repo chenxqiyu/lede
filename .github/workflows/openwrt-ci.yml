@@ -87,10 +87,10 @@ jobs:
           sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' target/linux/ramips/Makefile
           make defconfig
 
-      - name: Make download
-        run: |
-          make download -j8
-          find dl -size -1024c -exec rm -f {} \;
+#       - name: Make download
+#         run: |
+#           make download -j8
+#           find dl -size -1024c -exec rm -f {} \;
 
       - name: Compile firmware
         run: |
@@ -104,6 +104,9 @@ jobs:
           du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
+          ls -al bin/targets/ramips/mt7621/packages/
+          
+          
 
       - name: Prepare artifact
         run: |
