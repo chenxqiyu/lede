@@ -84,6 +84,7 @@ jobs:
           wget https://raw.githubusercontent.com/chenxqiyu/lede/master/.config
           echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
           cat .config
+          sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' target/linux/ramips/Makefile
           make defconfig
 
       - name: Make download
@@ -93,7 +94,8 @@ jobs:
 
       - name: Compile firmware
         run: |
-          make -j$(nproc) || make -j1 V=s
+          #make -j$(nproc) || make -j1 V=s
+          make package/kernel/linux/compile -j1
           echo "======================="
           echo "Space usage:"
           echo "======================="
