@@ -5,7 +5,7 @@
 #
 # Copyright (C) 2020 KFERMercer
 #
-name: OpenWrt-R3P加速缓存指定内核编译5.10.146-1
+name: OpenWrt-R3P加速缓存指定内核编译5.4.215
 
 on:
   repository_dispatch:
@@ -40,17 +40,17 @@ jobs:
           ref: 13ac208389090be161627cdddeb17f338adda330
 #           fetch-depth: 0
           
-#       - name: cache
-#         uses: klever1988/cachewrtbuild@main
-#         with:
-#           #是否一并缓存.ccache目录，如果你启用了ccache。这是唯一的常用参数，其他三个用于除错，一般不需要调整
-#           ccache: true
-#           #是否缓存工具链目录
-#           toolchain: true
-#           #是否跳过工具链编译
-#           skip: true
-#           #清空缓存
-#           clean: false
+      - name: cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          #是否一并缓存.ccache目录，如果你启用了ccache。这是唯一的常用参数，其他三个用于除错，一般不需要调整
+          ccache: true
+          #是否缓存工具链目录
+          toolchain: true
+          #是否跳过工具链编译
+          skip: true
+          #清空缓存
+          clean: false
           
       - name: Space cleanup
         env:
@@ -84,7 +84,8 @@ jobs:
           wget https://raw.githubusercontent.com/chenxqiyu/lede/master/.config
           echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
           cat .config
-          sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' target/linux/ramips/Makefile
+          #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' target/linux/ramips/Makefile
+          cat target/linux/ramips/Makefile
           make defconfig
 
       - name: Make download
