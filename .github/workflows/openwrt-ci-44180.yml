@@ -79,7 +79,7 @@ jobs:
           mv .config44180 .config
           echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
           cat .config
-          make defconfig
+          #make defconfig
 
       - name: Make download
         run: |
