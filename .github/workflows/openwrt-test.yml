@@ -100,7 +100,8 @@ jobs:
           #make -j$(nproc) || make -j1 V=s
           du -h
           du -h -d 1 || sort -hr
-          time make tools/zip/compile -j$(nproc) || time make tools/zip/compile -j1
+          #time make tools/zip/compile -j$(nproc) || time make tools/zip/compile -j1
+          touch staging_dir/my.txt
           du -h
           du -h -d 1 || sort -hr
           echo "======================="
