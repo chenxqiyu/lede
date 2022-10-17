@@ -100,7 +100,7 @@ jobs:
           #make -j$(nproc) || make -j1 V=s
           du -h -d 1 || sort -hr
           ls -al staging_dir/host/bin/
-          time make package/luci-app-adblock/compile -j$(nproc) || time make package/luci-app-adblock/compile -j1 V=s
+          time make package/luci-app-adblock/compile -j$(nproc) || time make package/luci-app-adblock/compile -j1 || time make package/luci-app-adblock/compile -j1 V=s || time make package/luci-app-adblock/compile -j1 V=sc
           #time make tools/compile -j$(nproc) || time make tools/compile -j1
           #time make toolchain/compile -j$(nproc) || time make toolchain/compile -j1
           echo "======================="
