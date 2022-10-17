@@ -96,8 +96,10 @@ jobs:
 
       - name: Compile firmware
         run: |
-          make clean
-          make -j$(nproc) || make -j1 V=s
+          #make clean
+          #make -j$(nproc) || make -j1 V=s
+          time make tools/compile -j$(nproc) || time make tools/compile -j1
+          time make toolchain/compile -j$(nproc) || time make toolchain/compile -j1
           echo "======================="
           echo "Space usage:"
           echo "======================="
