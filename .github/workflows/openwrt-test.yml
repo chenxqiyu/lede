@@ -48,6 +48,7 @@ jobs:
           #是否缓存工具链目录
           toolchain: true
           #是否跳过工具链编译
+          
           skip: true
           #清空缓存
           clean: false
@@ -89,20 +90,21 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           
-#       - name: Make download
-#         run: |
-#           make download -j8
-#           find dl -size -1024c -exec rm -f {} \;
+      - name: Make download
+        run: |
+          make download -j8
+          find dl -size -1024c -exec rm -f {} \;
 
       - name: Compile firmware
         run: |
-          
+         
           du -h -d 1 || sort -hr
+          ls -al staging_dir/
           ls -al staging_dir/host/bin/
           touch staging_dir/host/bin/aaaaaaa.txt
           du -h -d 1 || sort -hr
           ls -al staging_dir/host/bin/
-          make package/kernel/linux/compile -j$(nproc)
+          #make package/kernel/linux/compile -j$(nproc)
           
           
 #       - name: Prepare artifact
