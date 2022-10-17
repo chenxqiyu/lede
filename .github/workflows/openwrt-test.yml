@@ -99,8 +99,10 @@ jobs:
           #make clean
           #make -j$(nproc) || make -j1 V=s
           du -h
+          du -h -d 1 || sort -hr
           time make tools/zip/compile -j$(nproc) || time make tools/zip/compile -j1
           du -h
+          du -h -d 1 || sort -hr
           echo "======================="
           echo "Space usage:"
           echo "======================="
