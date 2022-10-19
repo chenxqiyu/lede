@@ -72,8 +72,12 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        run: make defconfig
-
+        run: |
+          rm -f ./.config*
+          wget https://github.com/chenxqiyu/lede/raw/master/.config
+          echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
+          #make defconfig
+          
       - name: Make download
         run: |
           make download -j8
