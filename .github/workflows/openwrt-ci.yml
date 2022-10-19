@@ -37,7 +37,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: 13ac208389090be161627cdddeb17f338adda330
 
       - name: cache
         uses: klever1988/cachewrtbuild@main
