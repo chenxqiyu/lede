@@ -5,7 +5,7 @@
 #
 # Copyright (C) 2020 KFERMercer
 #
-name: OpenWrt-CI
+name: R3P最新源码编译
 
 on:
   repository_dispatch:
