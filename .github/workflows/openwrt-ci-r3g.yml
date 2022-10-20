@@ -75,6 +75,7 @@ jobs:
         run: |
           rm -f ./.config*
           wget https://github.com/chenxqiyu/lede/raw/master/.config_r3g
+          mv .config_r3g .config
           echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
           #make defconfig
           
