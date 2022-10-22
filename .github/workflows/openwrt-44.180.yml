@@ -69,7 +69,7 @@ jobs:
         run: |
           rm -f feeds.conf.default
           wget https://github.com/chenxqiyu/lede/raw/master/feeds.conf.default44180
-          mv .feeds.conf.default44180 .feeds.conf.default
+          mv feeds.conf.default44180 feeds.conf.default
           
       - name: Update feeds
         run: |
