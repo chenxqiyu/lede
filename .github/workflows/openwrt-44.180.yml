@@ -65,7 +65,12 @@ jobs:
 #           sudo -E apt-get clean
 
 #           df -h
-
+      - name: Generate file
+        run: |
+          rm -f feeds.conf.default
+          wget https://github.com/chenxqiyu/lede/raw/master/feeds.conf.default44180
+          mv .feeds.conf.default44180 .feeds.conf.default
+          
       - name: Update feeds
         run: |
           sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
@@ -75,8 +80,9 @@ jobs:
       - name: Generate configuration file
         run: |
           rm -f ./.config*
-          #wget https://github.com/chenxqiyu/lede/raw/master/.config44180
-          #mv .config44180 .config
+          wget https://github.com/chenxqiyu/lede/raw/master/.config44180
+          mv .config44180 .config
+          
           echo -e 'CONFIG_DEVEL=y\nCONFIG_CCACHE=y' >> .config
           cat .config
           #make defconfig
