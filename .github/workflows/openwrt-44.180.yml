@@ -105,9 +105,9 @@ jobs:
           
       - name: Compile firmware
         run: |
-          time make tools/compile -j$(nproc) || time make tools/compile -j1
-          time make toolchain/compile -j$(nproc) || time make toolchain/compile -j1
-          #make -j$(nproc) || make -j1 V=s
+          #time make tools/compile -j$(nproc) || time make tools/compile -j1
+          #time make toolchain/compile -j$(nproc) || time make toolchain/compile -j1
+          make -j$(nproc) || make -j1 V=s
           echo "======================="
           echo "Space usage:"
           echo "======================="
@@ -115,7 +115,7 @@ jobs:
           echo "======================="
           du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
           du -h --max-depth=1 ./build_dir
-          #du -h --max-depth=1 ./bin
+          du -h --max-depth=1 ./bin
 
       - name: Prepare artifact
         run: |
