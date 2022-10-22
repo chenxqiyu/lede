@@ -1,0 +1,8 @@
+#yuan-5-13
+src-git packages https://github.com/coolsnowwolf/packages^01941a4f5ff94e8327b9e7c7aff38a96d8d63da0
+#2020-5-25
+src-git luci https://github.com/coolsnowwolf/luci^6e7a1def8339e990e2c6324a1408866300d00361
+#2020-7-02
+src-git routing https://git.openwrt.org/feed/routing.git;openwrt-19.07
+#src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-19.07
+src-git helloworld https://github.com/fw876/helloworld^bd7abedf9560c1c483e8b5d14b52d73d40ccc11c
