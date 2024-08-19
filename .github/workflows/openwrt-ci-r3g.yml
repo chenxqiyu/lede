@@ -5,7 +5,7 @@
 #
 # Copyright (C) 2020 KFERMercer
 #
-name: R3G-5.4.215版本编译
+name: R3G-最新版本编译
 
 on:
   repository_dispatch:
@@ -34,22 +34,22 @@ jobs:
 
     steps:
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: 236af7db5082c18044905fbb3ecd39abb195c6f0
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      #   with:
+      #     ref: 236af7db5082c18044905fbb3ecd39abb195c6f0
 
-      - name: cache
-        uses: klever1988/cachewrtbuild@main
-        with:
-          #是否一并缓存.ccache目录，如果你启用了ccache。这是唯一的常用参数，其他三个用于除错，一般不需要调整
-          ccache: true
-          #是否缓存工具链目录
-          toolchain: true
-          #是否跳过工具链编译
-          skip: true
-          #清空缓存
-          clean: false
+      # - name: cache
+      #   uses: klever1988/cachewrtbuild@main
+      #   with:
+      #     #是否一并缓存.ccache目录，如果你启用了ccache。这是唯一的常用参数，其他三个用于除错，一般不需要调整
+      #     ccache: true
+      #     #是否缓存工具链目录
+      #     toolchain: true
+      #     #是否跳过工具链编译
+      #     skip: true
+      #     #清空缓存
+      #     clean: false
           
 #       - name: Space cleanup
 #         env:
@@ -67,6 +67,8 @@ jobs:
 
       - name: Update feeds
         run: |
+          git clone https://github.com/coolsnowwolf/lede.git
+          cd lede
           sed -i 's/#src-git helloworld/src-git helloworld/g' ./feeds.conf.default
           ./scripts/feeds update -a
           ./scripts/feeds install -a
