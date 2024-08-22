@@ -110,7 +110,8 @@ jobs:
           #time make toolchain/compile -j$(nproc) || time make toolchain/compile -j1
           #make -j$(nproc) || make -j1 V=s
           wget https://github.com/chenxqiyu/lede/raw/master/m.sh
-          sh m.sh
+          chmod a+x m.sh
+          ./m.sh
           echo "======================="
           echo "Space usage:"
           echo "======================="
