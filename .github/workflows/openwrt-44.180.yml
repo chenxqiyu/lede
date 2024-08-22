@@ -5,7 +5,7 @@
 #
 # Copyright (C) 2020 KFERMercer
 #
-name: OpenWrt-R3P加速缓存编译指定内核44.180
+name: OpenWrt-R3G加速缓存编译指定内核44.180
 
 on:
   repository_dispatch:
