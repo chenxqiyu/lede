@@ -40,31 +40,31 @@ jobs:
           ref: c985a54a613ed148621dcc99cf0d37345bb44b00
           fetch-depth: 0
           
-      # - name: cache
-      #   uses: klever1988/cachewrtbuild@main
-      #   with:
-      #     #是否一并缓存.ccache目录，如果你启用了ccache。这是唯一的常用参数，其他三个用于除错，一般不需要调整
-      #     ccache: true
-      #     #是否缓存工具链目录
-      #     toolchain: true
-      #     #是否跳过工具链编译
-      #     skip: true
-      #     #清空缓存
-      #     clean: false
+      - name: cache
+        uses: klever1988/cachewrtbuild@main
+        with:
+          #是否一并缓存.ccache目录，如果你启用了ccache。这是唯一的常用参数，其他三个用于除错，一般不需要调整
+          ccache: true
+          #是否缓存工具链目录
+          toolchain: true
+          #是否跳过工具链编译
+          skip: true
+          #清空缓存
+          clean: false
           
-#       - name: Space cleanup
-#         env:
-#           DEBIAN_FRONTEND: noninteractive
-#         run: |
-#           docker rmi `docker images -q`
-#           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
-#           sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
-#           sudo -E apt-get update
-#           sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
-#           sudo -E apt-get -y autoremove --purge
-#           sudo -E apt-get clean
-
-#           df -h
+      - name: Space cleanup
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          docker rmi `docker images -q`
+          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
+          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* || true
+          sudo -E apt-get update
+          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf swig
+          sudo -E apt-get -y autoremove --purge
+          sudo -E apt-get clean
+          df -h
+          
       - name: Generate file
         run: |
           rm -f feeds.conf.default
@@ -95,11 +95,10 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           
           
-      # - name: Make download
-      #   run: |
-      #     make clean
-      #     make download -j8
-      #     find dl -size -1024c -exec rm -f {} \;
+      - name: Make download
+        run: |
+          make download -j$(nproc)
+          find dl -size -1024c -exec rm -f {} \;
 
 
           
@@ -108,10 +107,10 @@ jobs:
         run: |
           #time make tools/compile -j$(nproc) || time make tools/compile -j1
           #time make toolchain/compile -j$(nproc) || time make toolchain/compile -j1
-          #make -j$(nproc) || make -j1 V=s
-          wget https://github.com/chenxqiyu/lede/raw/master/m.sh
-          chmod a+x m.sh
-          ./m.sh
+          make -j$(nproc) || make -j1 V=s
+          # wget https://github.com/chenxqiyu/lede/raw/master/m.sh
+          # chmod a+x m.sh
+          # ./m.sh
           echo "======================="
           echo "Space usage:"
           echo "======================="
