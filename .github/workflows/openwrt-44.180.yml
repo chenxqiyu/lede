@@ -95,11 +95,11 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           
           
-      - name: Make download
-        run: |
-          make clean
-          make download -j8
-          find dl -size -1024c -exec rm -f {} \;
+      # - name: Make download
+      #   run: |
+      #     make clean
+      #     make download -j8
+      #     find dl -size -1024c -exec rm -f {} \;
 
 
           
